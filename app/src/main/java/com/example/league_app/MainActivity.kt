@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.DrawerValue
@@ -50,13 +51,22 @@ class MainActivity : ComponentActivity() {
 fun App() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val toggleDrawer = {
+        scope.launch {
+            drawerState.apply {
+                if (isClosed) open() else close()
+            }
+        }
+    }
+
     val viewModel: MainViewModel = viewModel()
+    val navController: NavHostController = rememberNavController()
 
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                ChampionsDrawer(viewModel)
+                ChampionsDrawer(viewModel, navController, onClose = { toggleDrawer() })
             }
         }
     ) {
@@ -64,16 +74,16 @@ fun App() {
             bottomBar = {
                 BottomAppBar(
                     actions = {
-                        IconButton(onClick = {
-                            scope.launch {
-                                drawerState.apply {
-                                    if (isClosed) open() else close()
-                                }
-                            }
-                        }) {
+                        IconButton(onClick = { toggleDrawer() }) {
                             Icon(
                                 Icons.Filled.Menu,
                                 contentDescription = "Open champions drawer",
+                            )
+                        }
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                Icons.Filled.Search,
+                                contentDescription = "Search champions",
                             )
                         }
                         IconButton(onClick = { /*TODO*/ }) {
@@ -85,33 +95,29 @@ fun App() {
                     },
                 )
             },
-        ) {
-            Column(modifier = Modifier.padding(it)) {
-                AppNavigation(viewModel)
+        ) { innerPadding ->
+            Column(modifier = Modifier.padding(innerPadding)) {
+                NavHost(
+                    navController = navController,
+                    startDestination = Routes.ChampionsScreen.route
+                ) {
+                    composable(Routes.ChampionsScreen.route) {
+                        ChampionsScreen()
+                    }
+
+                    composable(
+                        route = Routes.ChampionDetailsScreen.route,
+                        arguments = listOf(navArgument("data") { type = NavType.StringType })
+                    ) {
+                        val id = it.arguments?.getString("data", "") ?: ""
+                        ChampionDetailsScreen(navController, viewModel, id)
+                    }
+
+                    composable(route = Routes.SettingsScreen.route) {
+                        SettingsScreen()
+                    }
+                }
             }
-        }
-    }
-}
-
-@Composable
-fun AppNavigation(viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
-    val navController: NavHostController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = Routes.ChampionsScreen.route) {
-        composable(Routes.ChampionsScreen.route) {
-            ChampionsScreen()
-        }
-
-        composable(
-            route = Routes.ChampionDetailsScreen.route,
-            arguments = listOf(navArgument("data") { type = NavType.IntType })
-        ) {
-            val position = it.arguments?.getInt("data", 0) ?: 0
-            ChampionDetailsScreen(navController, viewModel, position)
-        }
-
-        composable(route = Routes.SettingsScreen.route) {
-            SettingsScreen()
         }
     }
 }
