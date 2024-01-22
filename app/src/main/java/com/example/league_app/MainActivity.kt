@@ -80,7 +80,7 @@ fun App() {
                                 contentDescription = "Open champions drawer",
                             )
                         }
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = { navController.navigate(Routes.ChampionsScreen.route) }) {
                             Icon(
                                 Icons.Filled.Search,
                                 contentDescription = "Search champions",

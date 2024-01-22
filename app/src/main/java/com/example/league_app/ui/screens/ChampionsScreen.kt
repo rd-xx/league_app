@@ -1,6 +1,5 @@
 package com.example.league_app.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +15,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.league_app.model.MainViewModel
@@ -47,11 +45,7 @@ fun ChampionsScreen(navController: NavController?, viewModel: MainViewModel) {
                 .padding(innerPadding)
                 .fillMaxWidth()
         ) {
-            Column(
-                modifier = Modifier
-                    .background(Color.Yellow)
-                    .padding(8.dp)
-            ) {
+            Column(modifier = Modifier.padding(8.dp)) {
                 SearchBar(viewModel)
                 Spacer(modifier = Modifier.padding(8.dp))
                 LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {

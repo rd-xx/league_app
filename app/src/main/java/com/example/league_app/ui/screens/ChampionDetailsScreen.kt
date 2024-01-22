@@ -1,6 +1,5 @@
 package com.example.league_app.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -33,11 +31,7 @@ import com.example.league_app.model.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
-fun ChampionDetailsScreen(
-    navController: NavHostController?,
-    viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
-    id: String
-) {
+fun ChampionDetailsScreen(navController: NavHostController?, viewModel: MainViewModel, id: String) {
     LaunchedEffect(id) {
         viewModel.loadById(id)
     }
@@ -70,9 +64,7 @@ fun ChampionDetailsScreen(
     ) {
         Box(modifier = Modifier.padding(it)) {
             Column(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .background(Color.Red),
+                modifier = Modifier.padding(8.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 GlideImage(

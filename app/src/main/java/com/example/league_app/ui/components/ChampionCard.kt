@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,11 +32,11 @@ import com.example.league_app.model.SimpleChampionBean
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ChampionCard(champion: SimpleChampionBean, navController: NavController?) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { navController?.navigate(Routes.ChampionDetailsScreen.addParam(champion.id)) }
-    ) {
+    val onClick = {
+        navController?.navigate(Routes.ChampionDetailsScreen.addParam(champion.id))
+    }
+
+    Card(modifier = Modifier.clickable { onClick() }) {
         Row(modifier = Modifier.padding(8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             GlideImage(
                 model = champion.getImageUrl(),
