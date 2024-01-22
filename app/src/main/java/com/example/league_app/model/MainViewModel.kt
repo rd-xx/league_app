@@ -14,6 +14,7 @@ class MainViewModel : ViewModel() {
 
     var errorMessage by mutableStateOf("")
     var isLoading by mutableStateOf(Loaders())
+    var searchText by mutableStateOf("")
 
     fun loadAll() {
         championsCollection.clear()
@@ -54,6 +55,10 @@ class MainViewModel : ViewModel() {
             isLoading.single = false
         }
 
+    }
+
+    fun search(input: String) {
+        searchText = input
     }
 }
 

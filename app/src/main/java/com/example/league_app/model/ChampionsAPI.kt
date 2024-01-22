@@ -50,7 +50,13 @@ data class ChampionsBean(
 data class SimpleChampionBean(
     val id: String,
     val name: String,
-)
+    val image: ImageBean,
+    val blurb: String,
+) {
+    fun getImageUrl(): String {
+        return "https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/${image.full}"
+    }
+}
 
 // extends SimpleChampionBean
 data class ChampionBean(

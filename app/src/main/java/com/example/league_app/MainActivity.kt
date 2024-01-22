@@ -3,7 +3,7 @@ package com.example.league_app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -96,13 +96,13 @@ fun App() {
                 )
             },
         ) { innerPadding ->
-            Column(modifier = Modifier.padding(innerPadding)) {
+            Box(modifier = Modifier.padding(innerPadding)) {
                 NavHost(
                     navController = navController,
                     startDestination = Routes.ChampionsScreen.route
                 ) {
                     composable(Routes.ChampionsScreen.route) {
-                        ChampionsScreen()
+                        ChampionsScreen(navController, viewModel)
                     }
 
                     composable(
