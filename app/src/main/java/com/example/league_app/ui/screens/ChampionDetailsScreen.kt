@@ -1,22 +1,12 @@
 package com.example.league_app.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -28,41 +18,17 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
 import com.example.league_app.R
 import com.example.league_app.model.MainViewModel
+import com.example.league_app.ui.components.Layout
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun ChampionDetailsScreen(navController: NavHostController?, viewModel: MainViewModel, id: String) {
-    LaunchedEffect(id) {
-        viewModel.loadById(id)
-    }
+fun ChampionDetailsScreen(navController: NavHostController, viewModel: MainViewModel, id: String) {
+    LaunchedEffect(id) { viewModel.loadById(id) }
 
     val champion = viewModel.champions.find { it.id == id }
 
-    if (viewModel.isLoading.single || champion == null) {
-        Text("Chargement...")
-        return
-    }
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = { navController?.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Localized description"
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
-                title = { Text(champion.name) }
-            )
-        }
-    ) {
-        Box(modifier = Modifier.padding(it)) {
+    Layout(navController, id) {
+        if (!viewModel.isLoading.single && champion != null) {
             Column(
                 modifier = Modifier.padding(8.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
