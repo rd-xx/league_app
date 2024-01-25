@@ -20,6 +20,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -77,19 +78,19 @@ fun App() {
                         IconButton(onClick = { toggleDrawer() }) {
                             Icon(
                                 Icons.Filled.Menu,
-                                contentDescription = "Open champions drawer",
+                                contentDescription = stringResource(R.string.description_open_champions_drawer),
                             )
                         }
                         IconButton(onClick = { navController.navigate(Routes.ChampionsScreen.route) }) {
                             Icon(
                                 Icons.Filled.Search,
-                                contentDescription = "Search champions",
+                                contentDescription = stringResource(R.string.description_search_champions),
                             )
                         }
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
                                 Icons.Filled.Settings,
-                                contentDescription = "Go to settings",
+                                contentDescription = stringResource(R.string.description_go_to_settings),
                             )
                         }
                     },

@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">league_app</string>
+    <string name="app_name">League of Legends App</string>
+
+    <string name="title_champions_list">Champions list</string>
+    <string name="title_champions">Champions</string>
+
+    <string name="description_open_champions_drawer">Open champions drawer</string>
+    <string name="description_search_champions">Search champions</string>
+    <string name="description_go_to_settings">Go to settings</string>
+    <string name="description_go_to_details">Go to details</string>
+
+    <string name="loading">Loading…</string>
 </resources>

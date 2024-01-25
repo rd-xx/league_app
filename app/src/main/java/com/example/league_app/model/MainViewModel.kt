@@ -27,7 +27,7 @@ class MainViewModel : ViewModel() {
                 championsCollection.addAll(result)
             } catch (e: Exception) {
                 e.printStackTrace()
-                errorMessage = "Erreur : ${e.message}"
+                errorMessage = "Error : ${e.message}"
             }
 
             isLoading.collection = false
@@ -49,7 +49,7 @@ class MainViewModel : ViewModel() {
                 champions.add(result)
             } catch (e: Exception) {
                 e.printStackTrace()
-                errorMessage = "Erreur : ${e.message}"
+                errorMessage = "Error : ${e.message}"
             }
 
             isLoading.single = false
