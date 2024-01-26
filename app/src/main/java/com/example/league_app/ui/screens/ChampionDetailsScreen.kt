@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,6 +20,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
 import com.example.league_app.R
 import com.example.league_app.model.MainViewModel
+import com.example.league_app.ui.components.ChampionSpells
 import com.example.league_app.ui.components.Layout
 import com.example.league_app.ui.components.LoadingIndicator
 
@@ -35,8 +38,10 @@ fun ChampionDetailsScreen(navController: NavHostController, viewModel: MainViewM
 
         if (!viewModel.isLoading.single && champion != null) {
             Column(
-                modifier = Modifier.padding(8.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier
+                    .padding(8.dp)
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
                 GlideImage(
                     model = champion.getImageUrl(),
@@ -50,6 +55,7 @@ fun ChampionDetailsScreen(navController: NavHostController, viewModel: MainViewM
                         .align(Alignment.CenterHorizontally)
                 )
                 Text(text = champion.lore)
+                ChampionSpells(champion)
             }
         }
     }

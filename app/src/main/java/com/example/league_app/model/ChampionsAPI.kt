@@ -70,7 +70,7 @@ data class ChampionBean(
     val passive: ChampionPassiveBean,
 ) {
     fun getImageUrl(): String {
-        return "https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/${image.full}"
+        return "https://ddragon.leagueoflegends.com/cdn/14.2.1/img/champion/${image.full}"
     }
 }
 
@@ -108,6 +108,7 @@ data class ChampionStatsBean(
 )
 
 data class ChampionSpellBean(
+    val id: String,
     val name: String,
     val description: String,
     val image: ImageBean,
@@ -115,7 +116,15 @@ data class ChampionSpellBean(
     val cooldown: List<Double>,
     val cost: List<Double>,
     val range: List<Double>,
-)
+) {
+    fun getImageUrl(): String {
+        return "https://ddragon.leagueoflegends.com/cdn/14.2.1/img/spell/${image.full}"
+    }
+
+    fun getKey(): String {
+        return id.last().toString();
+    }
+}
 
 data class ChampionPassiveBean(
     val name: String,
