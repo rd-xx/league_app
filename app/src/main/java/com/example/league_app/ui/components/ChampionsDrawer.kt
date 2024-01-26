@@ -27,7 +27,7 @@ fun ChampionsDrawer(
     Divider()
 
     if (viewModel.isLoading.collection) {
-        Text(stringResource(R.string.loading))
+        LoadingIndicator()
     }
 
     if (!viewModel.isLoading.collection && viewModel.championsCollection.isNotEmpty()) {

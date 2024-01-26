@@ -19,6 +19,7 @@ import com.bumptech.glide.integration.compose.placeholder
 import com.example.league_app.R
 import com.example.league_app.model.MainViewModel
 import com.example.league_app.ui.components.Layout
+import com.example.league_app.ui.components.LoadingIndicator
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -28,6 +29,10 @@ fun ChampionDetailsScreen(navController: NavHostController, viewModel: MainViewM
     val champion = viewModel.champions.find { it.id == id }
 
     Layout(navController, id) {
+        if (viewModel.isLoading.single) {
+            LoadingIndicator()
+        }
+
         if (!viewModel.isLoading.single && champion != null) {
             Column(
                 modifier = Modifier.padding(8.dp),

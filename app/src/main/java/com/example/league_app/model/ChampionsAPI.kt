@@ -58,7 +58,6 @@ data class SimpleChampionBean(
     }
 }
 
-// extends SimpleChampionBean
 data class ChampionBean(
     val id: String,
     val name: String,
