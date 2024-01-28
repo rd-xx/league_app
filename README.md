@@ -7,4 +7,5 @@
 - Search champions
 - View champion details
 - View spell details
-- Change app language
+- Internationalization (English and French)
+- In-app language picker
