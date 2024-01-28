@@ -7,7 +7,12 @@
     <string name="description_open_champions_drawer">Ouvrir le drawer des champions</string>
     <string name="description_search_champions">Rechercher des champions</string>
     <string name="description_go_to_settings">Accéder aux paramètres</string>
-    <string name="description_go_to_details">Go to details</string>
+    <string name="description_go_to_details">Accéder aux détails</string>
+
+    <string name="spell_level">Niveau %1$s: %2$s s</string>
+    <string name="spell_cooldown">Cooldown</string>
+    <string name="spell_no_cooldown">Pas de cooldown. Recharges : %1$s</string>
+    <string name="spell_manaless">Ne consomme pas de mana.</string>
 
     <string name="loading">Chargement…</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.league_app.ui.components
+package com.example.league_app.ui.components.champions
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

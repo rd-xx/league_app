@@ -9,5 +9,10 @@
     <string name="description_go_to_settings">Go to settings</string>
     <string name="description_go_to_details">Go to details</string>
 
+    <string name="spell_level">Level %1$s: %2$ss</string>
+    <string name="spell_cooldown">Cooldown</string>
+    <string name="spell_no_cooldown">No cooldown. Recharges: %1$s</string>
+    <string name="spell_manaless">Manaless.</string>
+
     <string name="loading">Loading…</string>
 </resources>

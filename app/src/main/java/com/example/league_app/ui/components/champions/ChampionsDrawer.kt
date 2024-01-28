@@ -1,4 +1,4 @@
-package com.example.league_app.ui.components
+package com.example.league_app.ui.components.champions
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import com.example.league_app.R
 import com.example.league_app.beans.Routes
 import com.example.league_app.model.MainViewModel
+import com.example.league_app.ui.components.layout.LoadingIndicator
 
 @Composable
 fun ChampionsDrawer(

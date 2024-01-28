@@ -1,4 +1,4 @@
-package com.example.league_app.ui.components
+package com.example.league_app.ui.components.layout
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu

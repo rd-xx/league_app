@@ -112,9 +112,10 @@ data class ChampionSpellBean(
     val name: String,
     val description: String,
     val image: ImageBean,
-    val maxrank: Int,
     val cooldown: List<Double>,
     val cost: List<Double>,
+    val costBurn: String,
+    val maxammo: String,
     val range: List<Double>,
 ) {
     fun getImageUrl(): String {
@@ -123,6 +124,14 @@ data class ChampionSpellBean(
 
     fun getKey(): String {
         return id.last().toString();
+    }
+
+    fun hasCooldown(): Boolean {
+        return maxammo == "-1"
+    }
+
+    fun isManaless(): Boolean {
+        return costBurn == "0"
     }
 }
 

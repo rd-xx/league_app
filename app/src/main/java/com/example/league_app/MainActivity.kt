@@ -22,9 +22,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.league_app.beans.Routes
 import com.example.league_app.model.MainViewModel
-import com.example.league_app.ui.components.BottomBar
-import com.example.league_app.ui.components.ChampionsDrawer
+import com.example.league_app.ui.components.champions.ChampionsDrawer
+import com.example.league_app.ui.components.layout.BottomBar
 import com.example.league_app.ui.screens.ChampionDetailsScreen
+import com.example.league_app.ui.screens.ChampionSpellDetailsScreen
 import com.example.league_app.ui.screens.ChampionsScreen
 import com.example.league_app.ui.screens.SettingsScreen
 import com.example.league_app.ui.theme.LeagueTheme
@@ -76,10 +77,21 @@ fun App() {
 
                     composable(
                         route = Routes.ChampionDetailsScreen.route,
-                        arguments = listOf(navArgument("data") { type = NavType.StringType })
+                        arguments = listOf(navArgument("id") { type = NavType.StringType })
                     ) {
-                        val id = it.arguments?.getString("data", "") ?: ""
+                        val id = it.arguments?.getString("id", "") ?: ""
                         ChampionDetailsScreen(navController, viewModel, id)
+                    }
+
+                    composable(route = Routes.ChampionSpellDetailsScreen.route,
+                        arguments = listOf(
+                            navArgument("championId") { type = NavType.StringType },
+                            navArgument("id") { type = NavType.StringType }
+                        )
+                    ) {
+                        val championId = it.arguments?.getString("championId", "") ?: ""
+                        val id = it.arguments?.getString("id", "") ?: ""
+                        ChampionSpellDetailsScreen(navController, viewModel, championId, id)
                     }
 
                     composable(route = Routes.SettingsScreen.route) {
