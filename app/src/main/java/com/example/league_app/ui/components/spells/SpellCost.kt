@@ -12,7 +12,7 @@ import com.example.league_app.model.ChampionSpellBean
 @Composable
 fun SpellCost(spell: ChampionSpellBean) {
     Column {
-        Text("Costs", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+        Text(stringResource(R.string.spell_costs), fontSize = 24.sp, fontWeight = FontWeight.Bold)
 
         if (spell.isManaless()) {
             Text(stringResource(R.string.spell_manaless))

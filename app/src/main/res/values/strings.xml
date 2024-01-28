@@ -4,15 +4,21 @@
     <string name="title_champions_list">Champions list</string>
     <string name="title_champions">Champions</string>
 
-    <string name="description_open_champions_drawer">Open champions drawer</string>
-    <string name="description_search_champions">Search champions</string>
-    <string name="description_go_to_settings">Go to settings</string>
-    <string name="description_go_to_details">Go to details</string>
-
     <string name="spell_level">Level %1$s: %2$ss</string>
     <string name="spell_cooldown">Cooldown</string>
     <string name="spell_no_cooldown">No cooldown. Recharges: %1$s</string>
     <string name="spell_manaless">Manaless.</string>
+    <string name="spell_costs">Costs</string>
+
+    <string name="description_open_champions_drawer">Open champions drawer</string>
+    <string name="description_search_champions">Search champions</string>
+    <string name="description_edit_language">Edit language</string>
+    <string name="description_go_to_settings">Go to settings</string>
+    <string name="description_go_to_details">Go to details</string>
 
     <string name="loading">Loading…</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="confirm">Confirm</string>
+    <string name="spell">Spell</string>
 </resources>

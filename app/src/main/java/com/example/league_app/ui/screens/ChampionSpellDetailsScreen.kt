@@ -9,6 +9,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -57,7 +58,7 @@ fun ChampionSpellDetailsScreen(
                 Divider()
                 CenteredRow {
                     Spacer(modifier = Modifier.weight(1f))
-                    Text("${spell.getKey()} Spell")
+                    Text("${spell.getKey(champion.spells)} ${stringResource(R.string.spell)}")
                     GlideImage(
                         model = spell.getImageUrl(),
                         contentDescription = "${champion.name} image",

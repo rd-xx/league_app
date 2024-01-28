@@ -1,14 +1,17 @@
 package com.example.league_app
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -31,71 +34,78 @@ import com.example.league_app.ui.screens.SettingsScreen
 import com.example.league_app.ui.theme.LeagueTheme
 import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             LeagueTheme {
-                App()
-            }
-        }
-    }
-}
-
-@Composable
-fun App() {
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-    val toggleDrawer = {
-        scope.launch {
-            drawerState.apply {
-                if (isClosed) open() else close()
-            }
-        }
-    }
-
-    val viewModel: MainViewModel = viewModel()
-    val navController: NavHostController = rememberNavController()
-
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            ModalDrawerSheet {
-                ChampionsDrawer(viewModel, navController, onClose = { toggleDrawer() })
-            }
-        }
-    ) {
-        Scaffold(bottomBar = { BottomBar(navController) { toggleDrawer() } }) { innerPadding ->
-            Box(modifier = Modifier.padding(innerPadding)) {
-                NavHost(
-                    navController = navController,
-                    startDestination = Routes.ChampionsScreen.route
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
                 ) {
-                    composable(Routes.ChampionsScreen.route) {
-                        ChampionsScreen(navController, viewModel)
-                    }
+                    App()
+                }
+            }
+        }
 
-                    composable(
-                        route = Routes.ChampionDetailsScreen.route,
-                        arguments = listOf(navArgument("id") { type = NavType.StringType })
+        supportActionBar?.hide()
+    }
+
+    @Composable
+    fun App() {
+        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+        val scope = rememberCoroutineScope()
+        val toggleDrawer = {
+            scope.launch {
+                drawerState.apply {
+                    if (isClosed) open() else close()
+                }
+            }
+        }
+
+        val viewModel: MainViewModel = viewModel()
+        val navController: NavHostController = rememberNavController()
+
+        ModalNavigationDrawer(
+            drawerState = drawerState,
+            drawerContent = {
+                ModalDrawerSheet {
+                    ChampionsDrawer(viewModel, navController, onClose = { toggleDrawer() })
+                }
+            }
+        ) {
+            Scaffold(bottomBar = { BottomBar(navController) { toggleDrawer() } }) { innerPadding ->
+                Box(modifier = Modifier.padding(innerPadding)) {
+                    NavHost(
+                        navController = navController,
+                        startDestination = Routes.ChampionsScreen.route
                     ) {
-                        val id = it.arguments?.getString("id", "") ?: ""
-                        ChampionDetailsScreen(navController, viewModel, id)
-                    }
+                        composable(Routes.ChampionsScreen.route) {
+                            ChampionsScreen(navController, viewModel)
+                        }
 
-                    composable(route = Routes.ChampionSpellDetailsScreen.route,
-                        arguments = listOf(
-                            navArgument("championId") { type = NavType.StringType },
-                            navArgument("id") { type = NavType.StringType }
-                        )
-                    ) {
-                        val championId = it.arguments?.getString("championId", "") ?: ""
-                        val id = it.arguments?.getString("id", "") ?: ""
-                        ChampionSpellDetailsScreen(navController, viewModel, championId, id)
-                    }
+                        composable(
+                            route = Routes.ChampionDetailsScreen.route,
+                            arguments = listOf(navArgument("id") { type = NavType.StringType })
+                        ) {
+                            val id = it.arguments?.getString("id", "") ?: ""
+                            ChampionDetailsScreen(navController, viewModel, id)
+                        }
 
-                    composable(route = Routes.SettingsScreen.route) {
-                        SettingsScreen()
+                        composable(route = Routes.ChampionSpellDetailsScreen.route,
+                            arguments = listOf(
+                                navArgument("championId") { type = NavType.StringType },
+                                navArgument("id") { type = NavType.StringType }
+                            )
+                        ) {
+                            val championId = it.arguments?.getString("championId", "") ?: ""
+                            val id = it.arguments?.getString("id", "") ?: ""
+                            ChampionSpellDetailsScreen(navController, viewModel, championId, id)
+                        }
+
+                        composable(route = Routes.SettingsScreen.route) {
+                            SettingsScreen(navController)
+                        }
                     }
                 }
             }

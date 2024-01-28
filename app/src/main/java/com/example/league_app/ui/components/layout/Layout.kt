@@ -1,6 +1,5 @@
 package com.example.league_app.ui.components.layout
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -9,6 +8,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -45,7 +45,7 @@ fun Layout(
             )
         },
     ) {
-        Box(modifier = modifier.padding(it)) {
+        Surface(modifier = modifier.padding(it)) {
             children()
         }
     }

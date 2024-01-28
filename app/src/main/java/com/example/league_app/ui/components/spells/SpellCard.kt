@@ -10,6 +10,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,7 +39,7 @@ fun SpellCard(navController: NavController, champion: ChampionBean, spell: Champ
     Card(modifier = Modifier.clickable { onClick() }) {
         CenteredRow {
             GlideImage(
-                model = spell.getImageUrl(), contentDescription = "Spell",
+                model = spell.getImageUrl(), contentDescription = stringResource(R.string.spell),
                 loading = placeholder(R.mipmap.ic_launcher_round),
                 failure = placeholder(R.mipmap.ic_launcher),
                 modifier = Modifier
@@ -53,7 +54,11 @@ fun SpellCard(navController: NavController, champion: ChampionBean, spell: Champ
                 modifier = Modifier.width(IntrinsicSize.Max)
             )
             Spacer(modifier = Modifier.weight(1f))
-            Text(spell.getKey(), fontSize = 20.sp, modifier = Modifier.padding(end = 8.dp))
+            Text(
+                spell.getKey(champion.spells),
+                fontSize = 20.sp,
+                modifier = Modifier.padding(end = 8.dp)
+            )
         }
     }
 }

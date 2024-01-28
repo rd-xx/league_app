@@ -122,8 +122,10 @@ data class ChampionSpellBean(
         return "https://ddragon.leagueoflegends.com/cdn/14.2.1/img/spell/${image.full}"
     }
 
-    fun getKey(): String {
-        return id.last().toString();
+    fun getKey(spells: List<ChampionSpellBean>): String {
+        val keys = listOf("Q", "W", "E", "R")
+
+        return keys[spells.indexOf(this)]
     }
 
     fun hasCooldown(): Boolean {

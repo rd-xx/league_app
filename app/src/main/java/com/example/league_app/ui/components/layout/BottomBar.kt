@@ -29,7 +29,7 @@ fun BottomBar(navController: NavController, toggleDrawer: () -> Unit) {
                     contentDescription = stringResource(R.string.description_search_champions),
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { navController.navigate(Routes.SettingsScreen.route) }) {
                 Icon(
                     Icons.Filled.Settings,
                     contentDescription = stringResource(R.string.description_go_to_settings),

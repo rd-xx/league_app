@@ -4,15 +4,21 @@
     <string name="title_champions_list">Liste des champions</string>
     <string name="title_champions">Champions</string>
 
-    <string name="description_open_champions_drawer">Ouvrir le drawer des champions</string>
-    <string name="description_search_champions">Rechercher des champions</string>
-    <string name="description_go_to_settings">Accéder aux paramètres</string>
-    <string name="description_go_to_details">Accéder aux détails</string>
-
     <string name="spell_level">Niveau %1$s: %2$s s</string>
     <string name="spell_cooldown">Cooldown</string>
     <string name="spell_no_cooldown">Pas de cooldown. Recharges : %1$s</string>
     <string name="spell_manaless">Ne consomme pas de mana.</string>
+    <string name="spell_costs">Coûts</string>
+
+    <string name="description_open_champions_drawer">Ouvrir le drawer des champions</string>
+    <string name="description_search_champions">Rechercher des champions</string>
+    <string name="description_go_to_settings">Accéder aux paramètres</string>
+    <string name="description_go_to_details">Accéder aux détails</string>
+    <string name="description_edit_language">Modifier la langue</string>
 
     <string name="loading">Chargement…</string>
+    <string name="settings">Paramètres</string>
+    <string name="language">Langue</string>
+    <string name="confirm">Confirmer</string>
+    <string name="spell">Spell</string>
 </resources>
